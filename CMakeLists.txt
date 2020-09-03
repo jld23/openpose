@@ -344,6 +344,8 @@ if (APPLE)
   endif ()
 endif (APPLE)
 
+set(MIRROR "http://posefs1.perception.cs.cmu.edu/OpenPose" CACHE STRING "Mirror for models and 3rdparty libraries.")
+
 ### FIND REQUIRED PACKAGES
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules")
 
@@ -397,7 +399,7 @@ else (${WITH_EIGEN} MATCHES "NONE")
   # OpenPose download/builds Eigen
   if (${WITH_EIGEN} MATCHES "BUILD")
     # Download it
-    set(OP_URL "http://posefs1.perception.cs.cmu.edu/OpenPose/3rdparty/")
+    set(OP_URL "${MIRROR}/3rdparty/")
     set(FIND_LIB_PREFIX ${CMAKE_SOURCE_DIR}/3rdparty/)
     download_zip("eigen_2018_05_23.zip" ${OP_URL} ${FIND_LIB_PREFIX} 29B9B2FD4679D587BB67467F09EE8365)
     # Set path
@@ -547,7 +549,7 @@ if (WIN32)
 
   # Download Windows 3rd party
   message(STATUS "Downloading windows dependencies...")
-  set(OP_WIN_URL "http://posefs1.perception.cs.cmu.edu/OpenPose/3rdparty/windows")
+  set(OP_WIN_URL "${MIRROR}/3rdparty/windows")
   set(OP_WIN_DIR "${CMAKE_SOURCE_DIR}/3rdparty/windows")
 
   # Download required zip files
@@ -988,18 +990,18 @@ endif (Caffe_FOUND)
 message(STATUS "Download the models.")
 
 # URL to the models
-set(OPENPOSE_URL "http://posefs1.perception.cs.cmu.edu/OpenPose/models/")
+set(OPENPOSE_URL "${MIRROR}/models/")
 
 download_model("BODY_25" ${DOWNLOAD_BODY_25_MODEL} pose/body_25/pose_iter_584000.caffemodel
-  d41d8cd98f00b204e9800998ecf8427e) # Body (BODY_25)
+  78287B57CF85FA89C03F1393D368E5B7) # Body (BODY_25)
 download_model("body (COCO)" ${DOWNLOAD_BODY_COCO_MODEL} pose/coco/pose_iter_440000.caffemodel
   5156d31f670511fce9b4e28b403f2939) # Body (COCO)
 download_model("body (MPI)" ${DOWNLOAD_BODY_MPI_MODEL} pose/mpi/pose_iter_160000.caffemodel
   2ca0990c7562bd7ae03f3f54afa96e00) # Body (MPI)
 download_model("face" ${DOWNLOAD_FACE_MODEL} face/pose_iter_116000.caffemodel
-  d41d8cd98f00b204e9800998ecf8427e) # Face
+  e747180d728fa4e4418c465828384333) # Face
 download_model("hand" ${DOWNLOAD_HAND_MODEL} hand/pose_iter_102000.caffemodel
-  d41d8cd98f00b204e9800998ecf8427e) # Hand
+  a82cfc3fea7c62f159e11bd3674c1531) # Hand
 
 message(STATUS "Models Downloaded.")
 
